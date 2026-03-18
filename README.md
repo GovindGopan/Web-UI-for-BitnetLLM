@@ -5,6 +5,9 @@ A sleek, lightweight, and modern Web User Interface tailored for local quantized
 ## Features
 
 - **Local Processing**: Completely offline inference. Your data never leaves your machine.
+- **Response Generation Indicator**: Real-time visual feedback with a smooth, bouncing-dot "typing" indicator while the model generates a response.
+- **Generation Time Tracking**: Automatically measures and displays the precise time taken for each response (e.g., `1.23s`), integrated directly into the message layout.
+- **Premium Aesthetics**: A sophisticated, modern UI featuring the **Outfit** typeface from Google Fonts and a curated set of sharp, responsive icons from **Heroicons**.
 - **Multiple Chat Sessions**: Effortlessly create, rename, delete, and switch between different conversation threads.
 - **Persistent Storage**: Conversations are robustly synchronized directly to your browser's Local Storage.
 - **Academic Aesthetic**: A clean, balanced light-theme UI built with React and Tailwind CSS for maximum readability and professional demonstrations.
@@ -13,7 +16,9 @@ A sleek, lightweight, and modern Web User Interface tailored for local quantized
 ## Technology Stack
 
 - **Frontend**: React (Vite)
-- **Styling**: Tailwind CSS
+- **Styling**: Tailwind CSS & Vanilla CSS
+- **Typography**: Outfit (Google Fonts)
+- **Icons**: Heroicons (SVG)
 - **State Management**: React Hooks & native browser `localStorage`
 - **Networking**: Native `fetch` API
 
