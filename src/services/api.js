@@ -25,7 +25,7 @@ export async function fetchCompletion(messages) {
   // Fallback mock if backend is down
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve(`[Mock Response] I received ${messages.length} messages. This is a local test run with temp ${modelParams.temperature}.`);
+      resolve(`[Mock Response] I received ${messages.length} messages. This is a local test run.`);
     }, 1000);
   });
 }

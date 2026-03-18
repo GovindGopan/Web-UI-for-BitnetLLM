@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 
-export default function MessageList({ messages }) {
+export default function MessageList({ messages, isGenerating }) {
   const bottomRef = useRef(null);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
+  }, [messages, isGenerating]);
 
   return (
     <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-white">
@@ -23,9 +23,23 @@ export default function MessageList({ messages }) {
                 : 'bg-gray-50 border border-gray-100 text-gray-800 rounded-bl-sm'
             }`}>
               <div className="whitespace-pre-wrap">{msg.content}</div>
+              {msg.role === 'assistant' && msg.generationTimeMs && (
+                <div className="text-[10px] text-gray-400 mt-1.5 text-right font-medium">
+                  { (msg.generationTimeMs / 1000).toFixed(2) }s
+                </div>
+              )}
             </div>
           </div>
         ))
+      )}
+      {isGenerating && (
+        <div className="flex justify-start">
+          <div className="bg-gray-50 border border-gray-100 text-gray-800 rounded-2xl rounded-bl-sm px-5 py-3.5 shadow-sm inline-flex items-center gap-1.5 h-12">
+            <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce [animation-delay:-0.3s]"></span>
+            <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce [animation-delay:-0.15s]"></span>
+            <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce"></span>
+          </div>
+        </div>
       )}
       <div ref={bottomRef} />
     </div>

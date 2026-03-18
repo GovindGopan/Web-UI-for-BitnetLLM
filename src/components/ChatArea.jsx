@@ -24,10 +24,12 @@ export default function ChatArea({ session, onAddMessage }) {
     const history = [...session.messages, userMessage].map(m => ({ role: m.role, content: m.content }));
     
     setIsGenerating(true);
+    const startTime = Date.now();
 
     try {
       const responseText = await fetchCompletion(history);
-      onAddMessage(session.id, { role: 'assistant', content: responseText, timestamp: Date.now() });
+      const generationTimeMs = Date.now() - startTime;
+      onAddMessage(session.id, { role: 'assistant', content: responseText, timestamp: Date.now(), generationTimeMs });
     } catch (error) {
       console.error(error);
       onAddMessage(session.id, { role: 'assistant', content: 'Connection failed.', timestamp: Date.now() });
@@ -45,7 +47,7 @@ export default function ChatArea({ session, onAddMessage }) {
           Local Runtime
         </div>
       </div>
-      <MessageList messages={session.messages} />
+      <MessageList messages={session.messages} isGenerating={isGenerating} />
       <ChatInput onSend={handleSend} isGenerating={isGenerating} />
     </div>
   );
