@@ -2,11 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body, #root {
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap');html, body, #root {
   height: 100%;
   margin: 0;
   padding: 0;
   background-color: #f9fafb;
+  font-family: 'Outfit', sans-serif;
 }
 
 /* Custom Scrollbar */

@@ -29,10 +29,10 @@ export default function Sidebar({ sessions, currentSessionId, onSelect, onNew, o
       <div className="p-4 border-b border-gray-200">
         <button 
           onClick={onNew}
-          className="w-full flex items-center justify-center gap-2 bg-white border border-gray-300 rounded-lg py-2 px-4 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors shadow-sm"
+          className="w-full flex items-center justify-center gap-2 bg-indigo-600 border border-transparent rounded-xl py-2.5 px-4 text-sm font-medium text-white hover:bg-indigo-700 hover:shadow-md transition-all shadow-sm"
         >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
-          New Chat
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" /></svg>
+          <span className="tracking-wide">New Chat</span>
         </button>
       </div>
 
@@ -41,14 +41,16 @@ export default function Sidebar({ sessions, currentSessionId, onSelect, onNew, o
           <div 
             key={session.id}
             onClick={() => onSelect(session.id)}
-            className={`group relative flex items-center p-3 rounded-lg cursor-pointer transition-colors ${
+            className={`group relative flex items-center p-3 rounded-xl cursor-pointer transition-all duration-200 border ${
               currentSessionId === session.id 
-                ? 'bg-blue-50 text-blue-700' 
-                : 'text-gray-700 hover:bg-gray-100'
+                ? 'bg-gradient-to-r from-indigo-50 to-white border-indigo-100 text-indigo-700 shadow-sm font-medium' 
+                : 'border-transparent text-gray-600 hover:bg-white hover:border-gray-200 hover:shadow-sm'
             }`}
           >
-            <div className="flex-1 truncate text-sm flex items-center gap-2">
-              <svg className="w-4 h-4 shrink-0 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" /></svg>
+            <div className="flex-1 truncate text-sm flex items-center gap-2.5">
+              <svg className={`w-4 h-4 shrink-0 transition-colors ${currentSessionId === session.id ? 'text-indigo-500' : 'text-gray-400 group-hover:text-indigo-500'}`} fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
+              </svg>
               {editingId === session.id ? (
                 <input 
                   autoFocus
